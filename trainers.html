@@ -1,0 +1,490 @@
+<!DOCTYPE html><!--   sxolio -->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Eternal Private School-Teachers</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <style>
+    /* Popup Box */
+    /* The Modal (background) */
+    .modal {
+      display: none;
+      /* Hidden by default */
+      position: fixed;
+      /* Stay in place */
+      z-index: 8888;
+      /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%;
+      /* Full width */
+      height: 100%;
+      /* Full height */
+      overflow: auto;
+      /* Enable scroll if needed */
+      background-color: rgb(0, 0, 0);
+      /* Fallback color */
+      background-color: rgba(0, 0, 0, 0.4);
+      /* Black w/ opacity */
+    }
+
+    /* Modal Content/Box */
+    .modal-content {
+      background-color: #fefefe;
+      margin: 10vh auto;
+      /* 15% from the top and centered */
+      padding: 20px;
+      border: 1px solid #888;
+      width: 60%;
+      /* Could be more or less, depending on screen size */
+    }
+
+    @media (min-width: 1366px) {
+      .modal-content {
+        background-color: #fefefe;
+        margin: 10vh auto;
+        /* 15% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 30%;
+        /* Could be more or less, depending on screen size */
+      }
+    }
+
+    h2,
+    p {
+      margin: 0 0 20px;
+      font-weight: 400;
+      color: #666;
+    }
+
+    span {
+      color: #666;
+      display: block;
+      padding: 0 0 5px;
+    }
+
+    form {
+      padding: 25px;
+      margin: 25px;
+      box-shadow: 0 2px 5px #f5f5f5;
+      background: #eee;
+    }
+
+    input,
+    textarea {
+      width: calc(100% - 18px);
+      padding: 8px;
+      margin-bottom: 20px;
+      border: 1px solid #1c87c9;
+      outline: none;
+    }
+
+    .contact-form button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      background: #1c87c9;
+      font-size: 16px;
+      font-weight: 400;
+      color: #fff;
+    }
+
+    button:hover {
+      background: #2371a0;
+    }
+
+    /* The Close Button */
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    button.button {
+      background: none;
+      border-top: none;
+      outline: none;
+      border-right: none;
+      border-left: none;
+      border-bottom: #02274a 1px solid;
+      padding: 0 0 3px 0;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button.button:hover {
+      border-bottom: #a99567 1px solid;
+      color: #a99567;
+    }
+
+    p {
+      color: cadetblue;
+    }
+
+    h1 {
+      color: crimson;
+    }
+
+    header {
+      margin-top: 30px;
+      margin-left: 30px;
+      margin-right: 30;
+    }
+
+    th {
+      text-align: center;
+      background-color: rgb(0, 217, 255);
+    }
+
+    div {
+      text-align: center;
+    }
+
+    table {
+      margin-top: 30px;
+      margin-left: 30px;
+      margin-right: 30;
+    }
+
+    input {
+      color: black;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Button used to open the contact form - fixed at the bottom of the page */
+    .open-button {
+      background-color: #555;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      opacity: 0.8;
+      background-position: right;
+      bottom: 23px;
+      right: 28px;
+      width: 280px;
+    }
+
+    /* The popup form - hidden by default */
+    .form-popup {
+      display: none;
+      position: fixed;
+      padding-top: 10px;
+      bottom: 3px;
+      right: 500px;
+      /* border: 3px solid #f1f1f1; */
+      z-index: 9;
+    }
+
+    /* Add styles to the form container */
+    .form-container {
+      max-width: 300px;
+      padding: 15px;
+      background-color: rgb(206, 208, 211);
+    }
+
+    /* Full-width input fields */
+    .form-container input[type=text],
+    .form-container input[type=password] {
+      width: 100%;
+      padding: 15px;
+      margin: 2px 0 8px 0;
+      border: none;
+      background: #f1f1f1;
+    }
+
+    .form-container input[type=number],
+    .form-container input[type=date] {
+      width: 100%;
+      padding: 5px;
+      margin: 2px 0 8px 0;
+
+    }
+
+    /* When the inputs get focus, do something */
+    .form-container input[type=text]:focus,
+    .form-container input[type=password]:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+
+    /* Set a style for the submit/login button */
+    .form-container .btn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 10px;
+      opacity: 0.8;
+    }
+
+    /* Add a red background color to the cancel button */
+    .form-container .cancel {
+      background-color: red;
+    }
+
+    /* Add some hover effects to buttons */
+    .form-container .btn:hover,
+    .open-button:hover {
+      opacity: 1;
+    }
+
+
+    
+  </style>
+
+  <script>
+    function openForm() {
+      document.getElementById("myForm").style.display = "block";
+    }
+
+    function closeForm() {
+      document.getElementById("myForm").style.display = "none";
+    }
+  </script>
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light static-top mb-5 shadow">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+      data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="new project.html" >Eternal Private School</a>
+
+
+
+
+
+    <div class="btn-group" role="group">
+      <button style="background-color: rgb(138, 100, 173);" id="btnGroupDrop1" type="button"
+        class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Students
+      </button>
+      <div style="text-decoration: underline;background-color: mediumspringgreen;" class="dropdown-menu"
+        aria-labelledby="btnGroupDrop1">
+        <a class="dropdown-item" href="students.html">A list of our students</a>
+        <a class="dropdown-item" href="students per course.html">A list of our students per course</a>
+      </div>
+    </div>
+
+    <div class="btn-group" role="group">
+      <button style="background-color: rgb(138, 100, 173);" id="btnGroupDrop3" type="button"
+        class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Teachers
+      </button>
+      <div style="text-decoration: underline;background-color: mediumspringgreen;" class="dropdown-menu"
+        aria-labelledby="btnGroupDrop1">
+        <a class="dropdown-item" href="trainers.html">A list of our trainers</a>
+        <a class="dropdown-item" href="trainers per course.html">A list of our trainers per course</a>
+      </div>
+    </div>
+
+    <div class="btn-group" role="group">
+      <button style="background-color: rgb(138, 100, 173);" id="btnGroupDrop4" type="button"
+        class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Courses
+      </button>
+      <div style="text-decoration: underline;background-color: mediumspringgreen;" class="dropdown-menu"
+        aria-labelledby="btnGroupDrop1">
+        <a class="dropdown-item" href="courses.html">A list of our courses</a>
+        <a class="dropdown-item" href="Assigment per course.html">A list of our courses per assigment</a>
+      </div>
+    </div>
+
+    <div class="btn-group" role="group">
+      <button style="background-color: rgb(138, 100, 173);" id="btnGroupDrop2" type="button"
+        class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Assigments
+      </button>
+      <div style="text-decoration: underline;background-color: mediumspringgreen;" class="dropdown-menu"
+        aria-labelledby="btnGroupDrop1">
+        <a class="dropdown-item" href="Assigments.html">A List of our assigments</a>
+        <a class="dropdown-item" href="assigment per course per student.html">A list of our assigments per student per
+          course</a>
+      </div>
+    </div>
+
+  </nav>
+  <div>
+    <header style="background-color: hotpink;"><b>The list of our trainers</b></header>
+
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Surname</th>
+          <th scope="col">Teaching course</th>
+          <th><button class="open-button" onclick="openForm()"> &#9840; Add a new Trainer</button>
+
+            
+            
+            
+            <div class="form-popup" id="myForm">
+              <form action="/action_page.php" class="form-container">
+                <h1>Add a new Trainer</h1>
+
+                <label for="text"><b style="color: rgb(177, 95, 95);">First name</b></label>
+                <input pattern="[a-zA-Z]*" title="Use only letters from A-Z " placeholder="Enter the name" name="text" required>
+
+                <label for="text"><b style="color: rgb(177, 95, 95);">Surname</b></label>
+                <input pattern="[a-zA-Z]*" title="Use only letters from A-Z " placeholder="Enter the surname " name="text" required>
+                <label for="text"><b style="color:rgb(177, 95, 95);">Stream</b></label>
+                <input pattern="[a-zA-Z]*" title="Use only letters from A-Z " placeholder="Enter the course" name="text" required>
+
+
+
+
+
+                <button type="submit" class="btn" on data-dismiss="form">Save the registry</button> 
+                <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+              </form>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+
+          <th scope="row">1</th>
+          <td>Μανώλης</td>
+          <td>Δομέστιχας</td>
+          <td>Java full time</td>
+          <td><button class="button" data-modal="modalOne">	&#128393; Edit</button>
+             
+              <button class="button" data-modal="modalTwo">&#9842; Update</button>
+            
+            <div id="modalOne" class="modal">
+              <div class="modal-content">
+                <div class="contact-form">
+                  <a class="close">&times;</a>
+                  <form>
+                    <h2>Edit the current trainer</h2>
+                    <div>
+                      <input type="text" name="name" placeholder="Μανώλης" required>
+                      <input type="text" name="name" placeholder="Δομέστιχας" required>
+                      <input type="text" name="name" placeholder="Java full time" required>
+                    </div>
+
+                    <button type="submit" class="btn" on data-dismiss="form">Submit</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+  
+  <div id="modalTwo" class="modal">
+    <div class="modal-content">
+      <div class="contact-form">
+        <span class="close">&times;</span>
+        <form action="/">
+          <h2>Update the current trainer</h2>
+          <div>
+            <input type="text" name="name" placeholder="Μανώλης" required>
+            <input type="text" name="name" placeholder="Δομέστιχας" required>
+            <input type="text" name="name" placeholder="Java full time" required>
+          
+          </div>
+
+          <button type="submit" class="btn" on data-dismiss="form">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  </td>
+  </tr>
+  <tr>
+    <th scope="row">2</th>
+    <td>Γρηγόρης</td>
+    <td>Μανίλας</td>
+    <td>Java part time</td>
+
+  </tr>
+  <tr>
+    <th scope="row">3</th>
+    <td>Μαρία</td>
+    <td>Αποστόλίδη</td>
+    <td>C# full time</td>
+
+  </tr>
+  <tr>
+    <th scope="row">4</th>
+    <td>Κωνσταντίνος</td>
+    <td>Μαρκάκης</td>
+    <td>C# part time</td>
+
+  </tr>
+  <tr>
+    <th scope="row">5</th>
+    <td>Παναγιώτης</td>
+    <td>Μπαρούτης</td>
+    <td>SQL</td>
+
+  </tr>
+  <tr>
+    <th scope="row">6</th>
+    <td>Σούλα</td>
+    <td>Σταματίου</td>
+    <td>HTML</td>
+
+  </tr>
+      </tbody>
+    </table>
+  </div>
+  <script>
+    var modalBtns = [...document.querySelectorAll(".button")];
+    modalBtns.forEach(function (btn) {
+      btn.onclick = function () {
+        var modal = btn.getAttribute('data-modal');
+        document.getElementById(modal).style.display = "block";
+      }
+    });
+
+    var closeBtns = [...document.querySelectorAll(".close")];
+    closeBtns.forEach(function (btn) {
+      btn.onclick = function () {
+        var modal = btn.closest('.modal');
+        modal.style.display = "none";
+      }
+    });
+
+    window.onclick = function (event) {
+      if (event.target.className === "modal") {
+        event.target.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>

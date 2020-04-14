@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>my first page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <style>
+    .outerClass {
+      text-align: center;
+    }
+
+    .innerClass {
+      margin-top: 5%;
+      display: inline-block;
+      width: 400px;
+      border: 1px;
+      border-style: groove;
+      height: 450px;
+      border-radius: 8px;
+      background-color: rgb(241, 240, 240);
+    }
+
+    .inp {
+      margin: 5%;
+    }
+
+    .btn {
+      white-space: normal !important;
+    }
+
+    body {
+      font-family: sans-serif;
+      background-image: url('https://www.afdemp.org/wp-content/uploads/2017/03/AFDEmp.png');
+
+      background-repeat: no-repeat;
+      background-size: contain
+    }
+  </style>
+
+  <script>
+    function menu() {
+
+      location.href = "new project.html"
+    }
+
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="outerClass">
+      <div id="myDiv" class="container innerClass  shadow p-3 mb-5  ">
+        <h4>Login Page</h4>
+        <hr style="background-color: brown;" />
+        <div class="row inp">
+          <label for="uName" ><b>Username</b> </label>
+          <input class="form-control" id="uName" type="text" placeholder="type username(use admin)" />
+        </div>
+        <div class="row inp">
+          <label for="pas"><b>Password</b> </label>
+          <input id="pas" class="form-control" type="password" placeholder="type your password (use admin)" />
+        </div>
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-4"><button id="submitBtn" class="btn btn-success">Login</button></div>
+          <div class="col-md-4"></div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+
+</html>
+
+<script>
+
+
+
+
+
+  $(document).ready(
+    function () {
+      $('#submitBtn').on('click', () => {
+        var inputName = $('#uName').val();
+        var password = $('#pas').val();
+        if (inputName == 'admin' && password == 'admin') {
+          $(".innerClass").fadeOut(2000);
+menu();
+        }
+        else {
+          alert('Invalid credentials')
+
+
+        }
+
+
+      })
+    })
+
+
+
+</script>
